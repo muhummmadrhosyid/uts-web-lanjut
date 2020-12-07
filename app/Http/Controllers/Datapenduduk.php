@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Http\Requests\RegistrasiRequest;
 
 class Datapenduduk extends Controller
 {
@@ -18,14 +19,8 @@ class Datapenduduk extends Controller
         return view('tampil_penduduk.add');
     }
 
-    public function addProcess(Request $request)
+    public function addProcess(RegistrasiRequest $request)
     {
-        $request->validate([
-            'nik' => 'required|min:2',
-            'name' => 'required|min:2',
-            'desc' => 'required'
-        ]);
-
         DB::table('datapenduduk')->insert([
             'nik' => $request->nik,
             'name' => $request->name,
